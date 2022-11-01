@@ -39,6 +39,7 @@ async function queryDatabase(databaseId) {
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
     console.log("result: " + result);
+    res.json({ message: result });
   });
   // sending a static html for now
   //   res.sendFile(__dirname + "/index.html");
