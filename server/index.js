@@ -11,6 +11,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
+let randomNumberArray = [];
+
 app.use(express.static("public"));
 app.use(
   bodyParser.urlencoded({
@@ -26,12 +28,26 @@ async function queryDatabase(databaseId) {
 
     let dbLength = response.results.length;
     let randomNumber = Math.floor(Math.random() * dbLength);
+    randomNumberArray.push(randomNumber);
     console.log("db length: " + dbLength);
     console.log("randomNumber: " + randomNumber);
+    console.log("array: " + randomNumberArray);
 
-    return response.results[randomNumber].properties.Link.rich_text[0].text
-      .content; // Airportlink
-    // return (response.results[randomNumber].properties.Name.title[0].text.content) // Airportname
+    let airportLink =
+      response.results[randomNumber].properties.Link.rich_text[0].text.content;
+    console.log("linkToPic: " + airportLink);
+
+    // console.log(typeof airportLink === undefined);
+
+    if (typeof airportLink === undefined) {
+      // this doesn't work yet
+      console.log("not defined");
+      //   queryDatabase(databaseId);
+    } else {
+      return response.results[randomNumber].properties.Link.rich_text[0].text
+        .content; // Airportlink
+      // return (response.results[randomNumber].properties.Name.title[0].text.content) // Airportname
+    }
   } catch (error) {
     console.log(error.body);
   }
