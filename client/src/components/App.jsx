@@ -1,15 +1,5 @@
 import React from "react";
-
-// function App() {
-//   return (
-//     <div>
-//       <img
-//         alt="airport"
-//         src="https://cdn.jetphotos.com/full/5/68554_1472499655.jpg"
-//       />
-//     </div>
-//   );
-// }
+import Button from "./Button";
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -25,6 +15,7 @@ function App() {
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <p>{!data ? "Loading..." : data}</p> */}
+        <Button />
         <img alt="airport" src={!data ? "Loading..." : data} />
       </header>
     </div>

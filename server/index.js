@@ -26,6 +26,7 @@ async function queryDatabase(databaseId) {
 
     let dbLength = response.results.length;
     let randomNumber = Math.floor(Math.random() * dbLength);
+    console.log("db length: " + dbLength);
     console.log("randomNumber: " + randomNumber);
 
     return response.results[randomNumber].properties.Link.rich_text[0].text
