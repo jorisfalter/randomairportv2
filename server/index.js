@@ -29,25 +29,27 @@ async function queryDatabase(databaseId) {
     let dbLength = response.results.length;
     let randomNumber = Math.floor(Math.random() * dbLength);
     randomNumberArray.push(randomNumber);
-    console.log("db length: " + dbLength);
-    console.log("randomNumber: " + randomNumber);
-    console.log("array: " + randomNumberArray);
+    // console.log("db length: " + dbLength);
+    // console.log("randomNumber: " + randomNumber);
+    // console.log("array: " + randomNumberArray);
 
     let airportLink =
       response.results[randomNumber].properties.Link.rich_text[0].text.content;
-    console.log("linkToPic: " + airportLink);
+    // console.log("linkToPic: " + response);
 
     // console.log(typeof airportLink === undefined);
+    // hij gaat niet in de if else als hij undefined is
 
-    if (typeof airportLink === undefined) {
-      // this doesn't work yet
-      console.log("not defined");
-      //   queryDatabase(databaseId);
-    } else {
-      return response.results[randomNumber].properties.Link.rich_text[0].text
-        .content; // Airportlink
-      // return (response.results[randomNumber].properties.Name.title[0].text.content) // Airportname
-    }
+    // if (typeof airportLink === "undefined") {
+    //   // this doesn't work yet
+    //   console.log("not defined");
+    //   //   queryDatabase(databaseId);
+    // } else {
+    // console.log("in the else");
+    return response.results[randomNumber].properties.Link.rich_text[0].text
+      .content; // Airportlink
+    // return (response.results[randomNumber].properties.Name.title[0].text.content) // Airportname
+    // }
   } catch (error) {
     console.log(error.body);
   }
@@ -55,11 +57,16 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    console.log("result: " + result);
+    // console.log("result: " + result);
     res.json({ message: result });
   });
   // sending a static html for now
   //   res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/testapi", function (req, res) {
+  console.log("req made");
+  res.json({ key: "value" });
 });
 
 app.listen(PORT, function () {
