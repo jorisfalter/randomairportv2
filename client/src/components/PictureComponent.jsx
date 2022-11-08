@@ -17,7 +17,9 @@ function PicComponent() {
 
   return (
     <div>
-      <button onClick={WhenClicked}>Next</button>
+      <button className="button" onClick={WhenClicked}>
+        Next
+      </button>
       <img alt="airport" src={!data ? "Loading..." : data} />
     </div>
   );
