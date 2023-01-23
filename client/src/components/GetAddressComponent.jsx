@@ -17,7 +17,8 @@ import React from "react";
 // this function to test if it works
 function GetAddressCoordsAsync() {
   const coords = "well this works!";
-  return <div>{coords}</div>;
+  return coords;
+  // return <div>{coords}</div>;
 }
 
 export default GetAddressCoordsAsync;
