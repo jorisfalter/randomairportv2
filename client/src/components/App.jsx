@@ -2,7 +2,6 @@ import React from "react";
 import PicComponent from "./PictureComponent.jsx";
 import MyMapComponent from "./MapsComponent.jsx";
 import AddressComponent from "./GetAddressComponent.jsx";
-import { useEffect } from "react";
 
 function App() {
   return (

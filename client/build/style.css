@@ -6,3 +6,8 @@ body {
 div {
   text-align: center;
 }
+
+button {
+  position: absolute;
+  font-size: 20px;
+}
