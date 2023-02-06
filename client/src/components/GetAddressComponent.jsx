@@ -11,7 +11,7 @@ import React, { useState, useEffect } from "react";
 // het werkt met de advice slip
 // dus het is mijn google api die niet werkt
 // de google api geeft nu resultaat in de browser
-// maar om de een of adnere reden komt ie niet door in de app
+// maar om de een of andere reden komt ie niet door in de app
 const Example = () => {
   const [location, setLocation] = useState(0);
   const mapsKey = process.env.REACT_APP_MAPS_API_KEY;
@@ -36,12 +36,14 @@ const Example = () => {
       try {
         const response = await fetch(URL);
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         // setLocation(json.slip.advice);
-        // setLocation(json.results.geometry.location.lat);
-        setLocation(json.results.address_components.long_name);
+        setLocation(json.results[0].geometry.location.lat);
+        // setLocation(response);
+        // setLocation(json.results[0].address_components[0].long_name);
       } catch (error) {
         console.log("error", error);
+        // setLocation(error);
       }
     };
     fetchData();
