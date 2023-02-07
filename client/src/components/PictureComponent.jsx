@@ -1,20 +1,20 @@
 import React from "react";
 
 function PicComponent() {
-  const [data, setData] = React.useState(null);
-  const [airportName, setAirportName] = React.useState(null);
+  const [airportPicLink, setAirportPicLink] = React.useState(null);
+  // const [airportName, setAirportName] = React.useState(null);
 
   React.useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
-      .then((data) => setData(data.message));
+      .then((airportPicLink) => setAirportPicLink(airportPicLink.message));
     // .then((airportName) => setAirportName(airportName.message2airportName));
   }, []);
 
   function WhenClicked() {
     fetch("/api")
       .then((res) => res.json())
-      .then((data) => setData(data.message));
+      .then((airportPicLink) => setAirportPicLink(airportPicLink.message));
   }
 
   return (
@@ -22,9 +22,12 @@ function PicComponent() {
       <button className="button" onClick={WhenClicked}>
         Next
       </button>
-      {data}
+      {airportPicLink}
       {/* {airportName} */}
-      <img alt="airport" src={!data ? "Loading..." : data} />
+      <img
+        alt="airport"
+        src={!airportPicLink ? "Loading..." : airportPicLink}
+      />
     </div>
   );
 }
