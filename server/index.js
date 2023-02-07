@@ -25,13 +25,10 @@ async function queryDatabase(databaseId) {
     const response = await notion.databases.query({
       database_id: databaseId,
     });
-
     let dbLength = response.results.length;
     let randomNumber = Math.floor(Math.random() * dbLength);
-    randomNumberArray.push(randomNumber);
 
-    let airportLink =
-      response.results[randomNumber].properties.Link.rich_text[0].text.content;
+    randomNumberArray.push(randomNumber);
 
     return [
       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
@@ -45,7 +42,7 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    console.log(result);
+    console.log(result); // er zit een linebreak achter sommige luchthavens die we moeten deleten
     res.json({ message: result[0], message2airportName: result[1] });
   });
 });
@@ -56,6 +53,7 @@ app.get("/testapi", function (req, res) {
   res.json({ key: "value" });
 });
 
+// dit niet uiteraard
 app.listen(PORT, function () {
   console.log("Server started on port " + PORT);
 });
