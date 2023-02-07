@@ -32,9 +32,12 @@ async function queryDatabase(databaseId) {
 
     let airportLink =
       response.results[randomNumber].properties.Link.rich_text[0].text.content;
-    return response.results[randomNumber].properties.Link.rich_text[0].text
-      .content; // Airportlink
-    // return (response.results[randomNumber].properties.Name.title[0].text.content) // Airportname
+
+    return [
+      response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
+
+      response.results[randomNumber].properties.Name.title[0].text.content,
+    ]; // Airportname
   } catch (error) {
     console.log(error.body);
   }
@@ -42,7 +45,8 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    res.json({ message: result });
+    console.log(result);
+    res.json({ message: result[0], message2airportName: result[1] });
   });
 });
 
