@@ -4,6 +4,8 @@ function PicComponent() {
   const [airportPicLinkAndName, setAirportPicLinkAndName] =
     React.useState(null);
 
+  // moet ik deze functie naar een hoger niveau brengen
+  // en hem dan mee naar hier brengen?
   function fetchApi() {
     fetch("/api")
       .then((res) => res.json())
@@ -18,6 +20,9 @@ function PicComponent() {
     fetchApi();
   }
 
+  // hieronder exporteren we Link naar de foto en de Naam van de airport
+  // we displayen de naam in de Div
+  // Dit moeten we nu op een andere manier exporteren
   return (
     <div>
       <p>
