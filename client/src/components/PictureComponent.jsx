@@ -4,8 +4,6 @@ function PicComponent() {
   const [airportPicLinkAndName, setAirportPicLinkAndName] =
     React.useState(null);
 
-  // moet ik deze functie naar een hoger niveau brengen
-  // en hem dan mee naar hier brengen?
   function fetchApi() {
     fetch("/api")
       .then((res) => res.json())
