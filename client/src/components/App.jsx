@@ -5,7 +5,10 @@ import AddressComponent from "./GetAddressComponent.jsx";
 
 function App() {
   const [newAirportPicLinkAndName, setNewAirportPicLinkAndName] =
-    React.useState(null);
+    React.useState({
+      message: "no link yet",
+      message2airportName: "no name yet",
+    });
 
   function fetchApi() {
     fetch("/api")
@@ -29,8 +32,8 @@ function App() {
           <MyMapComponent
             isMarkerShown
             airportName={newAirportPicLinkAndName.message2airportName}
+            // airportName="abc"
           />
-          ,
         </div>
       </header>
     </div>
