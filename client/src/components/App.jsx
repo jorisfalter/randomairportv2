@@ -16,6 +16,8 @@ function App() {
       .then((fetchedData) => setNewAirportPicLinkAndName(fetchedData));
   }
 
+  function getCoords() {}
+
   React.useEffect(() => {
     fetchApi();
   }, []);
@@ -32,7 +34,6 @@ function App() {
           <MyMapComponent
             isMarkerShown
             airportName={newAirportPicLinkAndName.message2airportName}
-            // airportName="abc"
           />
         </div>
       </header>
