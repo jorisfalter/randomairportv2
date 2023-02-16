@@ -14,6 +14,8 @@ const gMapsUrl =
 
 const coordsLat = -34.397;
 const coordsLon = 150.644;
+// kan ik deze coordinaten krijgen uit getAddressCoords
+// maar we gaan dat in app.js doen
 
 const MyMapComponent = compose(
   withProps({
