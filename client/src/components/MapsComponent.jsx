@@ -12,8 +12,8 @@ const gMapsUrl =
   mapsKey +
   "&v=3.exp&libraries=geometry,drawing,places";
 
-const coordsLat = -34.397;
-const coordsLon = 150.644;
+// const coordsLat = -34.397;
+// const coordsLon = 150.644;
 // kan ik deze coordinaten krijgen uit getAddressCoords
 // maar we gaan dat in app.js doen
 
@@ -29,13 +29,18 @@ const MyMapComponent = compose(
 )((props) => (
   <div>
     <p>dit is de luchthaven: {props.airportName}</p>
+    <p>dit is de xcoor: {props.airportXcoord}</p>
+    <p>dit is de ycoor: {props.airportYcoord}</p>
 
     <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: coordsLat, lng: coordsLon }}
+      defaultZoom={9}
+      //   defaultCenter={{ lat: props.airportXcoord, lng: props.airportYcoord }}
+      defaultCenter={{ lat: props.airportXcoord, lng: props.airportYcoord }}
     >
       {props.isMarkerShown && (
-        <Marker position={{ lat: coordsLat, lng: coordsLon }} />
+        <Marker
+          position={{ lat: props.airportXcoord, lng: props.airportYcoord }}
+        />
       )}
     </GoogleMap>
   </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const Example = () => {
+function Example(props) {
+  // const Example = () => {
   const [location, setLocation] = useState(0);
 
   useEffect(() => {
@@ -26,6 +27,6 @@ const Example = () => {
   }, []);
 
   return location;
-};
+}
 
 export default Example;
