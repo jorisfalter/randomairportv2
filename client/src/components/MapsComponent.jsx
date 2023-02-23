@@ -17,6 +17,18 @@ const gMapsUrl =
 // kan ik deze coordinaten krijgen uit getAddressCoords
 // maar we gaan dat in app.js doen
 
+// const [airportCoords, setAirportCoords] = React.useState({
+//   xcor: "",
+//   ycor: "",
+// });
+// let xcor = 10;
+// let ycor = 10;
+
+// we zijn aan het proberen deze constante te definieren voordat hij de component rendert
+// voorlopig voert hij dit echter niet uit
+// alternatief is om een google maps embed te gebruiken die niet compose gebruikt
+// of om de coords toch een niveau hoger te krijgen
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL: gMapsUrl,
@@ -26,12 +38,19 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
+  //   coordsNew
 )((props) => (
   <div>
-    <p>dit is de luchthaven: {props.airportName}</p>
-    <p>dit is de xcoor: {props.airportXcoord}</p>
-    <p>dit is de ycoor: {props.airportYcoord}</p>
-
+    <p>dit is de luchthaven in MapsComponent: {props.airportName}</p>
+    <p>dit is de xcoor in MapsComponent: {props.airportXcoord}</p>
+    <p>dit is de ycoor in MapsComponent: {props.airportYcoord}</p>
+    {/* ycor: {xcor ? xcor : "loading"} */}
+    {/* <br></br> */}
+    {/* xcor: {xcor} */}
+    <br></br>
+    {/* coordsNew: {xcor ? xcor : "loading"} */}
+    {/* xcor: {coordsNew} */}
+    {/* ycor: {coordsNew[1]} */}
     <GoogleMap
       defaultZoom={9}
       //   defaultCenter={{ lat: props.airportXcoord, lng: props.airportYcoord }}
@@ -45,5 +64,7 @@ const MyMapComponent = compose(
     </GoogleMap>
   </div>
 ));
+// }
 
 export default MyMapComponent;
+// export default coordsNew;

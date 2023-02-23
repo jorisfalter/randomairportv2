@@ -28,7 +28,7 @@ const Example = () => {
 
   return (
     <div>
-      dit is de locatie
+      {/* dit is de locatie */}
       {location}
       <br></br>
     </div>

@@ -1,7 +1,8 @@
 import React from "react";
 import NewPicComponent from "./NewPictureComponent.jsx";
 import MyMapComponent from "./MapsComponent.jsx";
-import AddressComponent from "./GetAddressComponent.jsx";
+import NewMapComponent from "./MapsComponentNotCompose.jsx";
+// import AddressComponent from "./GetAddressComponent.jsx";
 // import AddressCoords from "./GetAddressCoords.jsx";
 
 function App() {
@@ -12,21 +13,13 @@ function App() {
     });
 
   const [airportCoords, setAirportCoords] = React.useState({
-    xcor: "",
-    ycor: "",
+    xcor: 10,
+    ycor: 10,
   });
 
-  function fetchApi() {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((fetchedData) => setNewAirportPicLinkAndName(fetchedData));
-    // hier roep ik getCoords al
-    getCoords();
-  }
+  const [isLoading, setLoading] = React.useState(true);
 
-  // ik heb al eerder data fetched > in randomairport over de luchthavens
-  // in plaats van een div moet ik een variable exporten
-  function getCoords() {
+  async function getCoords() {
     // alert(newAirportPicLinkAndName.message2airportName);
     // let abc = AddressCoords;
     // alert(abc);
@@ -34,12 +27,13 @@ function App() {
     // const address = "EHAM airport";
     const address =
       newAirportPicLinkAndName.message2airportName.substring(0, 4) + " airport";
-    alert(address);
+    // alert(address);
     const URL =
       "https://maps.googleapis.com/maps/api/geocode/json?address=" +
       address +
       "&key=" +
       mapsKey;
+
     async function fetchData() {
       try {
         const response = await fetch(URL);
@@ -55,7 +49,20 @@ function App() {
       }
     }
     fetchData();
+    // alert(airportCoords.xcor);
   }
+  // coordsNew();
+
+  function fetchApi() {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((fetchedData) => setNewAirportPicLinkAndName(fetchedData))
+      .then(getCoords());
+    // .then(setLoading(false));
+  }
+
+  // ik heb al eerder data fetched > in randomairport over de luchthavens
+  // in plaats van een div moet ik een variable exporten
 
   React.useEffect(() => {
     fetchApi();
@@ -65,20 +72,30 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div ClassName="App">
-          {airportCoords.xcor}
+          <p>
+            dit is de luchthaven: {newAirportPicLinkAndName.message2airportName}
+          </p>
+          {/* ycor {airportCoords.xcor}
           <br></br>
-          {airportCoords.ycor}
-          <AddressComponent />
+          xcor {airportCoords.ycor} */}
+          {/* <AddressComponent /> */}
           <NewPicComponent
             onButtonClick={fetchApi} // wanneer ik hier haakjes achter zet stopt ie niet meer met de functie te callen !!
             newPicComponentTransfer={newAirportPicLinkAndName}
           />
+          {/* {isLoading ? (
+            <p>loading</p>
+          ) : ( */}
           <MyMapComponent
             isMarkerShown
             airportName={newAirportPicLinkAndName.message2airportName}
             airportXcoord={airportCoords.xcor}
             airportYcoord={airportCoords.ycor}
           />
+          <NewMapComponent />
+
+          {airportCoords.xcor}
+          {/* ) */}
         </div>
       </header>
     </div>
