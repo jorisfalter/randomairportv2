@@ -11,7 +11,6 @@ class NewMapComponent extends Component {
     };
     return (
       <div>
-        Hello World
         <Map
           google={this.props.google}
           zoom={10}

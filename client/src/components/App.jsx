@@ -1,6 +1,6 @@
 import React from "react";
 import NewPicComponent from "./NewPictureComponent.jsx";
-import MyMapComponent from "./MapsComponent.jsx";
+// import MyMapComponent from "./MapsComponent.jsx";
 import NewMapComponent from "./MapsComponentNotCompose.jsx";
 // import AddressComponent from "./GetAddressComponent.jsx";
 // import AddressCoords from "./GetAddressCoords.jsx";
@@ -16,8 +16,6 @@ function App() {
     xcor: 10,
     ycor: 10,
   });
-
-  const [isLoading, setLoading] = React.useState(true);
 
   async function getCoords() {
     // alert(newAirportPicLinkAndName.message2airportName);
@@ -51,14 +49,12 @@ function App() {
     fetchData();
     // alert(airportCoords.xcor);
   }
-  // coordsNew();
 
   function fetchApi() {
     fetch("/api")
       .then((res) => res.json())
       .then((fetchedData) => setNewAirportPicLinkAndName(fetchedData))
       .then(getCoords());
-    // .then(setLoading(false));
   }
 
   // ik heb al eerder data fetched > in randomairport over de luchthavens
@@ -75,27 +71,25 @@ function App() {
           <p>
             dit is de luchthaven: {newAirportPicLinkAndName.message2airportName}
           </p>
-          {/* ycor {airportCoords.xcor}
+          ycor {airportCoords.xcor}
           <br></br>
-          xcor {airportCoords.ycor} */}
+          xcor {airportCoords.ycor}
           {/* <AddressComponent /> */}
           <NewPicComponent
             onButtonClick={fetchApi} // wanneer ik hier haakjes achter zet stopt ie niet meer met de functie te callen !!
             newPicComponentTransfer={newAirportPicLinkAndName}
           />
-          {/* {isLoading ? (
-            <p>loading</p>
-          ) : ( */}
-          <MyMapComponent
+          {/* <MyMapComponent
             isMarkerShown
             airportName={newAirportPicLinkAndName.message2airportName}
             airportXcoord={airportCoords.xcor}
             airportYcoord={airportCoords.ycor}
+          /> */}
+          <NewMapComponent
+            airportName={newAirportPicLinkAndName.message2airportName}
+            airportXcoord={airportCoords.xcor}
+            airportYcoord={airportCoords.ycor}
           />
-          <NewMapComponent />
-
-          {airportCoords.xcor}
-          {/* ) */}
         </div>
       </header>
     </div>
