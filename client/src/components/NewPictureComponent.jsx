@@ -1,19 +1,7 @@
 import React from "react";
+import NewMapComponent from "./MapsComponentNotComposeFunction.jsx";
 
 function PicComponent(props) {
-  // const [airportPicLinkAndName, setAirportPicLinkAndName] =
-  //   React.useState(null);
-
-  // function fetchApi() {
-  //   fetch("/api")
-  //     .then((res) => res.json())
-  //     .then((fetchedData) => setAirportPicLinkAndName(fetchedData));
-  // }
-
-  // React.useEffect(() => {
-  //   fetchApi();
-  // }, []);
-
   function WhenClicked(event) {
     // alert("clicked");
     props.onButtonClick();
@@ -21,9 +9,6 @@ function PicComponent(props) {
     event.preventDefault();
   }
 
-  // hieronder exporteren we Link naar de foto en de Naam van de airport
-  // we displayen de naam in de Div
-  // Dit moeten we nu op een andere manier exporteren
   return (
     <div>
       <p>
@@ -35,12 +20,16 @@ function PicComponent(props) {
         Next
       </button>
       <img
+        width="300px"
         alt="airport"
         src={
           !props.newPicComponentTransfer
             ? "loading..."
             : props.newPicComponentTransfer.message
         }
+      />
+      <NewMapComponent
+        airportName={props.newPicComponentTransfer.message2airportName}
       />
     </div>
   );
