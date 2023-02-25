@@ -14,13 +14,8 @@ function NewMapComponent(props) {
 
   useEffect(() => {
     async function getCoords(xcor) {
-      // alert(newAirportPicLinkAndName.message2airportName);
-      // let abc = AddressCoords;
-      // alert(abc);
       const mapsKey = process.env.REACT_APP_MAPS_API_KEY;
-      // const address = "EHAM airport";
       const address = props.airportName.substring(0, 4) + " airport";
-      // alert(address);
       const URL =
         "https://maps.googleapis.com/maps/api/geocode/json?address=" +
         address +
@@ -51,19 +46,9 @@ function NewMapComponent(props) {
           name: props.airportName,
         });
       }
-
-      // alert(airportCoords.xcor);
     }
     getCoords();
   });
-
-  // airportName={newAirportPicLinkAndName.message2airportName}
-  // airportXcoord={airportCoords.xcor}
-  // airportYcoord={airportCoords.ycor}
-
-  // getCoords();
-
-  // we zien San Francisco op dekaart momenteel en ik weet niet waarom
 
   const style = {
     width: "300px",
@@ -71,13 +56,6 @@ function NewMapComponent(props) {
   };
   return (
     <div>
-      xcoor {airportCoords.xcor}
-      <br></br>
-      ycoor {airportCoords.ycor}
-      <br></br>
-      airport name {props.airportName}
-      <br></br>
-      old airport name {oldAirportName.name}
       <Map
         google={props.google}
         zoom={10}

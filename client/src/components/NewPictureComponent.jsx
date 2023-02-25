@@ -20,7 +20,8 @@ function PicComponent(props) {
         Next
       </button>
       <img
-        width="300px"
+        className="airportPicture"
+        width="500px"
         alt="airport"
         src={
           !props.newPicComponentTransfer
@@ -29,6 +30,7 @@ function PicComponent(props) {
         }
       />
       <NewMapComponent
+        className="mapComponent"
         airportName={props.newPicComponentTransfer.message2airportName}
       />
     </div>

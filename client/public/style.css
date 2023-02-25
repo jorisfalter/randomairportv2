@@ -11,3 +11,7 @@ button {
   position: absolute;
   font-size: 20px;
 }
+
+.mapComponent {
+  position: absolute;
+}
