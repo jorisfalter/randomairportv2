@@ -11,27 +11,27 @@ function PicComponent(props) {
 
   return (
     <div>
-      <p>
+      {/* <p>
         {!props.newPicComponentTransfer
           ? "loading..."
           : props.newPicComponentTransfer.message2airportName}
-      </p>
+      </p> */}
+      <NewMapComponent
+        className="mapComponent"
+        airportName={props.newPicComponentTransfer.message2airportName}
+      />
       <button className="button" onClick={WhenClicked}>
         Next
       </button>
       <img
         className="airportPicture"
-        width="500px"
+        // width="500px"
         alt="airport"
         src={
           !props.newPicComponentTransfer
             ? "loading..."
             : props.newPicComponentTransfer.message
         }
-      />
-      <NewMapComponent
-        className="mapComponent"
-        airportName={props.newPicComponentTransfer.message2airportName}
       />
     </div>
   );

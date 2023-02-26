@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div ClassName="App">
-          <p>{newAirportPicLinkAndName.message2airportName}</p>
+          {/* <p>{newAirportPicLinkAndName.message2airportName}</p> */}
 
           <NewPicComponent
             onButtonClick={fetchApi} // wanneer ik hier haakjes achter zet stopt ie niet meer met de functie te callen !!
