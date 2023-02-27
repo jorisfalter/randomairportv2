@@ -15,3 +15,11 @@ button {
 .mapComponent {
   position: absolute;
 }
+
+.button-and-image {
+  position: relative;
+}
+
+.map-div {
+  position: absolute;
+}

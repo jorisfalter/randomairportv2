@@ -26,12 +26,10 @@ function NewMapComponent(props) {
         try {
           const response = await fetch(URL);
           const json = await response.json();
-          // alert(json.results[0].geometry.location.lat);
           setAirportCoords({
             xcor: json.results[0].geometry.location.lat,
             ycor: json.results[0].geometry.location.lng,
           });
-          // alert("data fetched " + airportCoords.xcor);
 
           // setLocation(json.results[0].address_components[0].long_name); for debugging only
         } catch (error) {
@@ -55,7 +53,7 @@ function NewMapComponent(props) {
     height: "250px",
   };
   return (
-    <div>
+    <div className="map-div">
       <Map
         google={props.google}
         zoom={10}
