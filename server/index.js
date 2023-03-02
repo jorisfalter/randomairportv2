@@ -25,16 +25,39 @@ async function queryDatabase(databaseId) {
     const response = await notion.databases.query({
       database_id: databaseId,
     });
+
     let dbLength = response.results.length;
+    console.log("initial dblength: " + dbLength);
+    // console.log(
+    //   "highest item: " +
+    //     response.results[dbLength].properties.Link.rich_text[0].text.content
+    // );
+
+    // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
+    // Notion counts from the bottom, so we have to remove the bottom rows
+    // for (let i = 0; i < dbLength; i++) {
+    //   console.log("counter number: " + i);
+    //   if (1=1) {
+    //     // we should remove the row here
+    //     console.log("we should remove this row " + i);
+    console.log(
+      "this is the content: " +
+        response.results[6].properties.Name.title[0].text.content
+    );
+    //   } else {
+    //     console.log("this row has a value of 4 symbols for the airport " + i);
+    //   }
+    // }
+
     let randomNumber = Math.floor(Math.random() * dbLength);
+    console.log("randonmumber " + randomNumber);
 
     randomNumberArray.push(randomNumber);
 
     return [
       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
-
-      response.results[randomNumber].properties.Name.title[0].text.content,
-    ]; // Airportname
+      response.results[randomNumber].properties.Name.title[0].text.content, // Airportname
+    ];
   } catch (error) {
     console.log(error.body);
   }
@@ -42,7 +65,7 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    console.log(result); // er zit een linebreak achter sommige luchthavens die we moeten deleten
+    console.log(result);
     res.json({ message: result[0], message2airportName: result[1] });
   });
 });
