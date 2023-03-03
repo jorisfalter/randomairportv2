@@ -26,32 +26,25 @@ async function queryDatabase(databaseId) {
       database_id: databaseId,
     });
 
+    console.log(
+      "here is the response: " +
+        response.results[0].properties.Link.rich_text[0]
+    );
+    if (
+      typeof response.results[0].properties.Link.rich_text[0] == "undefined"
+    ) {
+      console.log("here is an undefined");
+    }
+
     let dbLength = response.results.length;
-    console.log("initial dblength: " + dbLength);
-    // console.log(
-    //   "highest item: " +
-    //     response.results[dbLength].properties.Link.rich_text[0].text.content
-    // );
 
     // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
     // Notion counts from the bottom, so we have to remove the bottom rows
-    // for (let i = 0; i < dbLength; i++) {
-    //   console.log("counter number: " + i);
-    //   if (1=1) {
-    //     // we should remove the row here
-    //     console.log("we should remove this row " + i);
-    console.log(
-      "this is the content: " +
-        response.results[6].properties.Name.title[0].text.content
-    );
-    //   } else {
-    //     console.log("this row has a value of 4 symbols for the airport " + i);
-    //   }
-    // }
 
+    // while
     let randomNumber = Math.floor(Math.random() * dbLength);
-    console.log("randonmumber " + randomNumber);
-
+    randomNumber = 10; // for testing
+    console.log("randomnumber " + randomNumber);
     randomNumberArray.push(randomNumber);
 
     return [
@@ -65,7 +58,7 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    console.log(result);
+    console.log("here is the result: " + result);
     res.json({ message: result[0], message2airportName: result[1] });
   });
 });
