@@ -30,6 +30,8 @@ async function queryDatabase(databaseId) {
       "here is the response: " +
         response.results[0].properties.Link.rich_text[0]
     );
+
+    // this part seems to work
     if (
       typeof response.results[0].properties.Link.rich_text[0] == "undefined"
     ) {
