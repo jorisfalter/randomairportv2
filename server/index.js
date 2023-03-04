@@ -12,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 let randomNumberArray = [];
+// let randomNumber = 0; // declaring it here to avoid an error
 
 app.use(express.static("public"));
 app.use(
@@ -43,11 +44,13 @@ async function queryDatabase(databaseId) {
     // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
     // Notion counts from the bottom, so we have to remove the bottom rows
 
-    // while
+    // function getRandomNumberFromDb() {
     let randomNumber = Math.floor(Math.random() * dbLength);
     randomNumber = 10; // for testing
     console.log("randomnumber " + randomNumber);
     randomNumberArray.push(randomNumber);
+    // }
+    // getRandomNumberFromDb();
 
     return [
       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
