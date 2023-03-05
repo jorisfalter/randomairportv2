@@ -27,30 +27,29 @@ async function queryDatabase(databaseId) {
       database_id: databaseId,
     });
 
-    console.log(
-      "here is the response: " +
-        response.results[0].properties.Link.rich_text[0]
-    );
-
     // this part seems to work
-    if (
-      typeof response.results[0].properties.Link.rich_text[0] == "undefined"
-    ) {
-      console.log("here is an undefined");
-    }
 
     let dbLength = response.results.length;
 
     // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
     // Notion counts from the bottom, so we have to remove the bottom rows
 
-    // function getRandomNumberFromDb() {
     let randomNumber = Math.floor(Math.random() * dbLength);
-    randomNumber = 10; // for testing
-    console.log("randomnumber " + randomNumber);
     randomNumberArray.push(randomNumber);
-    // }
-    // getRandomNumberFromDb();
+
+    // this function fetches a new number after a faulty row has been discovered
+    // for unclear reasons I cannot call it straight away when the app launches, so the lines above are duplicates necessary for first run
+    function getRandomNumberFromDb() {
+      randomNumber = Math.floor(Math.random() * dbLength);
+      randomNumberArray.push(randomNumber);
+    }
+
+    while (
+      typeof response.results[randomNumber].properties.Link.rich_text[0] ==
+      "undefined"
+    ) {
+      getRandomNumberFromDb();
+    }
 
     return [
       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
@@ -63,7 +62,7 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    console.log("here is the result: " + result);
+    console.log("wat we ontvangen na queryDatabase functie: " + result);
     res.json({ message: result[0], message2airportName: result[1] });
   });
 });
