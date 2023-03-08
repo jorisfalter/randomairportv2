@@ -51,10 +51,13 @@ function NewMapComponent(props) {
   const style = {
     width: "250px",
     height: "250px",
+    borderColor: "black",
+    borderStyle: "solid",
   };
   return (
     <div className="map-div">
       <Map
+        className="map-div-inner"
         google={props.google}
         zoom={10}
         center={{

@@ -16,9 +16,16 @@ function PicComponent(props) {
       </p> */}
 
       <div className="button-and-image">
+        <div className="mapComponent">
+          <NewMapComponent
+            airportName={props.newPicComponentTransfer.message2airportName}
+          />
+        </div>
+
         <button className="button" onClick={WhenClicked}>
           Next
         </button>
+
         <img
           className="airportPicture"
           // width="500px"
@@ -28,10 +35,6 @@ function PicComponent(props) {
               ? "loading..."
               : props.newPicComponentTransfer.message
           }
-        />
-        <NewMapComponent
-          className="mapComponent"
-          airportName={props.newPicComponentTransfer.message2airportName}
         />
       </div>
     </div>
