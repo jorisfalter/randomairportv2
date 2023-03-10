@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const { Client } = require("@notionhq/client");
+const path = require("path");
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DB_ID;
@@ -65,6 +66,10 @@ app.get("/api", function (req, res) {
     console.log("wat we ontvangen na queryDatabase functie: " + result);
     res.json({ message: result[0], message2airportName: result[1] });
   });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
 // ik denk dat ik dit mag deleten
