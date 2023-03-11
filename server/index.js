@@ -15,7 +15,8 @@ const PORT = process.env.PORT || 3001;
 let randomNumberArray = [];
 // let randomNumber = 0; // declaring it here to avoid an error
 
-app.use(express.static("public"));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
