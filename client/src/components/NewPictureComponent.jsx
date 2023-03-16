@@ -36,6 +36,11 @@ function PicComponent(props) {
               : props.newPicComponentTransfer.message
           }
         />
+        <div className="mapComponent2">
+          <NewMapComponent
+            airportName={props.newPicComponentTransfer.message2airportName}
+          />
+        </div>
       </div>
     </div>
   );

@@ -23,14 +23,22 @@ button {
   right: 250px;
   /* display:none; */
 }
-
+.mapComponent2 {
+  position: absolute;
+  display:none;
+}
 
 
 @media only screen and (max-width: 1000px) {
  
   .mapComponent {
+    display:none;
+  }
+  
+  .mapComponent2 {
     /* position: relative; */
-    /* display: none; */
+    display: block;
+
   }
 
   .test{
