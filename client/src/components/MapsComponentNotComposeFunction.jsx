@@ -49,8 +49,8 @@ function NewMapComponent(props) {
   });
 
   const style = {
-    width: "250px",
-    height: "250px",
+    width: props.size,
+    height: props.size,
     borderColor: "black",
     borderStyle: "solid",
   };
