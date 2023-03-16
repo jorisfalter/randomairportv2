@@ -36,7 +36,7 @@ button {
   }
   
   .mapComponent2 {
-    /* position: relative; */
+    position: sticky; 
     display: block;
 
   }
