@@ -3,9 +3,7 @@ body {
   padding: 0;
 }
 
-div {
-  /* text-align: center; */
-}
+
 
 button {
   position: absolute;
@@ -23,7 +21,29 @@ button {
 .mapComponent {
   position: absolute;
   right: 250px;
+  /* display:none; */
+}
+.mapComponent2 {
+  position: absolute;
+  display:none;
+}
+
+
+@media only screen and (max-width: 1000px) {
+ 
+  .mapComponent {
+    display:none;
+  }
+  
+  .mapComponent2 {
+    position: sticky; 
+    display: block;
+
+  }
+
+  .test{
+    background-color: blue;
+  }
 
 
 }
-
