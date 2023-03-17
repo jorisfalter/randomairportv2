@@ -40,7 +40,7 @@ function PicComponent(props) {
         <div className="mapComponent2">
           <NewMapComponent
             airportName={props.newPicComponentTransfer.message2airportName}
-            size="750px"
+            size="800px"
           />
         </div>
       </div>
