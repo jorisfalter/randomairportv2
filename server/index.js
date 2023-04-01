@@ -31,13 +31,15 @@ async function queryDatabase(databaseId) {
 
     // this part seems to work
 
-    let dbLength = response.results.length;
+    // let dbLength = response.results.length;
+    let dbLength = 3; // deze terug veranderen
 
     // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
     // Notion counts from the bottom, so we have to remove the bottom rows
 
     let randomNumber = Math.floor(Math.random() * dbLength);
     randomNumberArray.push(randomNumber);
+    console.log("this is the random number " + randomNumber);
 
     // this function fetches a new number after a faulty row has been discovered
     // for unclear reasons I cannot call it straight away when the app launches, so the lines above are duplicates necessary for first run
@@ -53,9 +55,15 @@ async function queryDatabase(databaseId) {
       getRandomNumberFromDb();
     }
 
+    console.log(response.results[randomNumber].properties.Latitude_NS.number);
+    console.log(response.results[randomNumber].properties.Longitude_EW.number);
+    // console.log(response.results[randomNumber].properties.number);
+
     return [
       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
       response.results[randomNumber].properties.Name.title[0].text.content, // Airportname
+      response.results[randomNumber].properties.Latitude_NS.number, // Latitude_NS
+      response.results[randomNumber].properties.Longitude_EW.number, // Longitude_EW
     ];
   } catch (error) {
     console.log(error.body);
@@ -65,7 +73,12 @@ async function queryDatabase(databaseId) {
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
     console.log("wat we ontvangen na queryDatabase functie: " + result);
-    res.json({ message: result[0], message2airportName: result[1] });
+    res.json({
+      message: result[0],
+      message2airportName: result[1],
+      message3latitude_ns: result[2],
+      message4longitude_ew: result[3],
+    });
   });
 });
 

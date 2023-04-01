@@ -6,6 +6,8 @@ function App() {
     React.useState({
       message: "no link yet",
       message2airportName: "no name yet",
+      message3latitude_ns: "no coords yet",
+      message4latitude_ew: "no coords yet",
     });
 
   function fetchApi() {

@@ -19,6 +19,8 @@ function PicComponent(props) {
         <div className="mapComponent">
           <NewMapComponent
             airportName={props.newPicComponentTransfer.message2airportName}
+            latitude_ns={props.newPicComponentTransfer.message3latitude_ns}
+            longitude_ew={props.newPicComponentTransfer.message4longitude_ew}
             size="300px"
           />
         </div>
@@ -40,6 +42,8 @@ function PicComponent(props) {
         <div className="mapComponent2">
           <NewMapComponent
             airportName={props.newPicComponentTransfer.message2airportName}
+            latitude_ns={props.newPicComponentTransfer.message3latitude_ns}
+            longitude_ew={props.newPicComponentTransfer.message4longitude_ew}
             size="800px"
           />
         </div>
