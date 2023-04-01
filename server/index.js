@@ -31,8 +31,8 @@ async function queryDatabase(databaseId) {
 
     // this part seems to work
 
-    // let dbLength = response.results.length;
-    let dbLength = 3; // deze terug veranderen
+    let dbLength = response.results.length;
+    // let dbLength = 3; // deze terug veranderen
 
     // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
     // Notion counts from the bottom, so we have to remove the bottom rows
