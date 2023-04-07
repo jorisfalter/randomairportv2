@@ -32,10 +32,8 @@ async function queryDatabase(databaseId) {
     // this part seems to work
 
     let dbLength = response.results.length;
-    // let dbLength = 3; // deze terug veranderen
 
-    // notion also adds empty rows, so if the length of the airportname is less than 4 characters, we reduce dbLength with 1
-    // Notion counts from the bottom, so we have to remove the bottom rows
+    // Notion counts from the bottom!
 
     let randomNumber = Math.floor(Math.random() * dbLength);
     randomNumberArray.push(randomNumber);
@@ -49,15 +47,18 @@ async function queryDatabase(databaseId) {
     }
 
     while (
-      typeof response.results[randomNumber].properties.Link.rich_text[0] ==
-      "undefined"
+      // I replaced the previous checker with the checkbox checker. The earlier checker checks if the Link is available
+      response.results[randomNumber].properties.ReadyForUse.checkbox == false
+      // typeof response.results[randomNumber].properties.Link.rich_text[0] ==
+      // "undefined"
     ) {
       getRandomNumberFromDb();
     }
 
-    console.log(response.results[randomNumber].properties.Latitude_NS.number);
-    console.log(response.results[randomNumber].properties.Longitude_EW.number);
+    // console.log(response.results[randomNumber].properties.Latitude_NS.number);
+    // console.log(response.results[randomNumber].properties.Longitude_EW.number);
     // console.log(response.results[randomNumber].properties.number);
+    // console.log(response.results[randomNumber].properties.Sequence.number);
 
     return [
       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
