@@ -38,12 +38,14 @@ async function queryDatabase(databaseId) {
     let randomNumber = Math.floor(Math.random() * dbLength);
     randomNumberArray.push(randomNumber);
     console.log("this is the random number " + randomNumber);
+    console.log(randomNumberArray);
 
     // this function fetches a new number after a faulty row has been discovered
     // for unclear reasons I cannot call it straight away when the app launches, so the lines above are duplicates necessary for first run
     function getRandomNumberFromDb() {
       randomNumber = Math.floor(Math.random() * dbLength);
       randomNumberArray.push(randomNumber);
+      console.log(randomNumberArray);
     }
 
     while (
