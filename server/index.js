@@ -85,42 +85,42 @@ app.get("/api", function (req, res) {
   });
 });
 
-async function findpicnumber(databaseId) {
-  try {
-    const response = await notion.databases.query({
-      database_id: databaseId,
-    });
+// async function findpicnumber(databaseId) {
+//   try {
+//     const response = await notion.databases.query({
+//       database_id: databaseId,
+//     });
 
-    // enter link to airport here
-    var selectedAirport =
-      "https://cdn.jetphotos.com/full/6/70162_1611190055.jpg";
+//     // enter link to airport here
+//     var selectedAirport =
+//       "https://cdn.jetphotos.com/full/6/70162_1611190055.jpg";
 
-    // nu moet ik van hier naar een nummer geraken
-    // dus eerst die link vinden, als die bestaat
+//     // nu moet ik van hier naar een nummer geraken
+//     // dus eerst die link vinden, als die bestaat
 
-    // Notion counts from the bottom!
+//     // Notion counts from the bottom!
 
-    // console.log(response.results[randomNumber].properties.Latitude_NS.number);
-    // console.log(response.results[randomNumber].properties.Longitude_EW.number);
-    // console.log(response.results[randomNumber].properties.number);
-    // console.log(response.results[randomNumber].properties.Sequence.number);
+//     // console.log(response.results[randomNumber].properties.Latitude_NS.number);
+//     // console.log(response.results[randomNumber].properties.Longitude_EW.number);
+//     // console.log(response.results[randomNumber].properties.number);
+//     // console.log(response.results[randomNumber].properties.Sequence.number);
 
-    return [
-      response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
-      response.results[randomNumber].properties.Name.title[0].text.content, // Airportname
-      response.results[randomNumber].properties.Latitude_NS.number, // Latitude_NS
-      response.results[randomNumber].properties.Longitude_EW.number, // Longitude_EW
-    ];
-  } catch (error) {
-    console.log(error.body);
-  }
-}
+//     return [
+//       response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
+//       response.results[randomNumber].properties.Name.title[0].text.content, // Airportname
+//       response.results[randomNumber].properties.Latitude_NS.number, // Latitude_NS
+//       response.results[randomNumber].properties.Longitude_EW.number, // Longitude_EW
+//     ];
+//   } catch (error) {
+//     console.log(error.body);
+//   }
+// }
 
 // a function for when you want a specific number of pic
-app.get("getpic", function (req, res) {
-  console.log("requested pic");
-  res.json({ key: "test" });
-});
+// app.get("getpic", function (req, res) {
+//   console.log("requested pic");
+//   res.json({ key: "test" });
+// });
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
