@@ -73,7 +73,7 @@ async function queryDatabase(databaseId) {
 
 app.get("/api", function (req, res) {
   queryDatabase(databaseId).then((result) => {
-    console.log("wat we ontvangen na queryDatabase functie: " + result);
+    console.log("what we receive after queryDatabase function: " + result);
     res.json({
       message: result[0],
       message2airportName: result[1],
@@ -81,6 +81,43 @@ app.get("/api", function (req, res) {
       message4longitude_ew: result[3],
     });
   });
+});
+
+async function findpicnumber(databaseId) {
+  try {
+    const response = await notion.databases.query({
+      database_id: databaseId,
+    });
+
+    // enter link to airport here
+    var selectedAirport =
+      "https://cdn.jetphotos.com/full/6/70162_1611190055.jpg";
+
+    // nu moet ik van hier naar een nummer geraken
+    // dus eerst die link vinden, als die bestaat
+
+    // Notion counts from the bottom!
+
+    // console.log(response.results[randomNumber].properties.Latitude_NS.number);
+    // console.log(response.results[randomNumber].properties.Longitude_EW.number);
+    // console.log(response.results[randomNumber].properties.number);
+    // console.log(response.results[randomNumber].properties.Sequence.number);
+
+    return [
+      response.results[randomNumber].properties.Link.rich_text[0].text.content, // Airportlink
+      response.results[randomNumber].properties.Name.title[0].text.content, // Airportname
+      response.results[randomNumber].properties.Latitude_NS.number, // Latitude_NS
+      response.results[randomNumber].properties.Longitude_EW.number, // Longitude_EW
+    ];
+  } catch (error) {
+    console.log(error.body);
+  }
+}
+
+// a function for when you want a specific number of pic
+app.get("getpic", function (req, res) {
+  console.log("requested pic");
+  res.json({ key: "test" });
 });
 
 app.get("*", (req, res) => {
