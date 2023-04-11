@@ -12,8 +12,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-let randomNumberArray = [];
-// let randomNumber = 0; // declaring it here to avoid an error
+// let randomNumberArray = [];
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
@@ -36,16 +35,17 @@ async function queryDatabase(databaseId) {
     // Notion counts from the bottom!
 
     let randomNumber = Math.floor(Math.random() * dbLength);
-    randomNumberArray.push(randomNumber);
+    // this doesn't seem to work in it's current form > combines all users' pics
+    // randomNumberArray.push(randomNumber);
     console.log("this is the random number " + randomNumber);
-    console.log(randomNumberArray);
+    // console.log(randomNumberArray);
 
     // this function fetches a new number after a faulty row has been discovered
     // for unclear reasons I cannot call it straight away when the app launches, so the lines above are duplicates necessary for first run
     function getRandomNumberFromDb() {
       randomNumber = Math.floor(Math.random() * dbLength);
-      randomNumberArray.push(randomNumber);
-      console.log(randomNumberArray);
+      // randomNumberArray.push(randomNumber);
+      // console.log(randomNumberArray);
     }
 
     while (
@@ -72,18 +72,6 @@ async function queryDatabase(databaseId) {
     console.log(error.body);
   }
 }
-
-app.get("/api", function (req, res) {
-  queryDatabase(databaseId).then((result) => {
-    console.log("what we receive after queryDatabase function: " + result);
-    res.json({
-      message: result[0],
-      message2airportName: result[1],
-      message3latitude_ns: result[2],
-      message4longitude_ew: result[3],
-    });
-  });
-});
 
 // async function findpicnumber(databaseId) {
 //   try {
@@ -116,15 +104,27 @@ app.get("/api", function (req, res) {
 //   }
 // }
 
+app.get("/api", function (req, res) {
+  queryDatabase(databaseId).then((result) => {
+    console.log("what we receive after queryDatabase function: " + result);
+    res.json({
+      message: result[0],
+      message2airportName: result[1],
+      message3latitude_ns: result[2],
+      message4longitude_ew: result[3],
+    });
+  });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
+
 // a function for when you want a specific number of pic
 // app.get("getpic", function (req, res) {
 //   console.log("requested pic");
 //   res.json({ key: "test" });
 // });
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
 
 // ik denk dat ik dit mag deleten
 app.get("/testapi", function (req, res) {
