@@ -16,7 +16,9 @@ button {
   position: relative;
 }
 
-
+.airportPicture{
+  max-width:2000px;
+}
 
 .mapComponent {
   position: absolute;
