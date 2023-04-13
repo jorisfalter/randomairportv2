@@ -120,8 +120,8 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
-// a function for when you want a specific number of pic
-// app.get("getpic", function (req, res) {
+// //a function for when you want a specific number of pic
+// app.get("/getpic", function (req, res) {
 //   console.log("requested pic");
 //   res.json({ key: "test" });
 // });
