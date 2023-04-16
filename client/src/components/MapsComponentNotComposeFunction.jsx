@@ -57,34 +57,37 @@ function NewMapComponent(props) {
   console.log(props.latitude_ns);
   console.log("an api call with size " + props.size);
   return (
-    <div className="map-div">
-      <Map
-        className="map-div-inner"
-        google={props.google}
-        zoom={10}
-        center={{
-          // lat: airportCoords.xcor,
-          // lng: airportCoords.ycor,
-          lat: props.latitude_ns,
-          lng: props.longitude_ew,
-        }}
-        initialCenter={{
-          // lat: airportCoords.ycor,
-          // lng: airportCoords.xcor,
-          lat: props.latitude_ns,
-          lng: props.longitude_ew,
-        }}
-        style={style}
-      >
-        <Marker
-          position={{
+    <div className="wrapper-div">
+      {/* <div className="close-map-bar">close bar here</div> */}
+      <div className="map-div">
+        <Map
+          className="map-div-inner"
+          google={props.google}
+          zoom={10}
+          center={{
             // lat: airportCoords.xcor,
             // lng: airportCoords.ycor,
             lat: props.latitude_ns,
             lng: props.longitude_ew,
           }}
-        />
-      </Map>
+          initialCenter={{
+            // lat: airportCoords.ycor,
+            // lng: airportCoords.xcor,
+            lat: props.latitude_ns,
+            lng: props.longitude_ew,
+          }}
+          style={style}
+        >
+          <Marker
+            position={{
+              // lat: airportCoords.xcor,
+              // lng: airportCoords.ycor,
+              lat: props.latitude_ns,
+              lng: props.longitude_ew,
+            }}
+          />
+        </Map>
+      </div>
     </div>
   );
 }
