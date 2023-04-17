@@ -29,6 +29,16 @@ function App() {
             onButtonClick={fetchApi} // wanneer ik hier haakjes achter zet stopt ie niet meer met de functie te callen !!
             newPicComponentTransfer={newAirportPicLinkAndName}
           />
+          <span className="feedback-form1">
+            <i class="fa fa-comments"></i>
+            {"  "}
+            <a
+              target="_blank"
+              href="https://docs.google.com/spreadsheets/d/1IdwkRChkpVNy_rbbB-GoS4vG-jcp4kwlzouzk0viX_w/edit?usp=sharing"
+            >
+              Feedback Suggestions Requests
+            </a>
+          </span>
         </div>
       </header>
     </div>

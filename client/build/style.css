@@ -30,6 +30,19 @@ button {
   display:none;
 }
 
+.feedback-form1{
+  position:sticky;
+  bottom:0;
+  left:0;
+  background-color:green;
+  border-style:solid;
+  border-color:black;
+  padding:2px;
+  color: white;
+}
+
+a { color: white; }
+
 
 @media only screen and (max-width: 1000px) {
  
@@ -38,10 +51,14 @@ button {
   }
   
   .mapComponent2 {
-    position: sticky; 
+    /* position: sticky;  */
     display: block;
-
   }
+
+  .feedback-form1{
+  position:absolute;
+  }
+
 
   .test{
     background-color: blue;
