@@ -8,6 +8,7 @@ function App() {
       message2airportName: "no name yet",
       message3latitude_ns: "no coords yet",
       message4latitude_ew: "no coords yet",
+      message5randomnumber: "no random number yet",
     });
 
   function fetchApi() {

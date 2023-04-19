@@ -1,6 +1,7 @@
 //jshint esversion:6
 require("dotenv").config();
 const express = require("express");
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const { Client } = require("@notionhq/client");
 const path = require("path");
@@ -12,14 +13,16 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-// let randomNumberArray = [];
-
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
+);
+
+app.use(
+  session({ secret: "my-secret", resave: false, saveUninitialized: true })
 );
 
 async function queryDatabase(databaseId) {
@@ -67,6 +70,7 @@ async function queryDatabase(databaseId) {
       response.results[randomNumber].properties.Name.title[0].text.content, // Airportname
       response.results[randomNumber].properties.Latitude_NS.number, // Latitude_NS
       response.results[randomNumber].properties.Longitude_EW.number, // Longitude_EW
+      randomNumber,
     ];
   } catch (error) {
     console.log(error.body);
@@ -105,15 +109,28 @@ async function queryDatabase(databaseId) {
 // }
 
 app.get("/api", function (req, res) {
+  let usedNumbers = req.session.usedNumbers || [];
+
   queryDatabase(databaseId).then((result) => {
     console.log("what we receive after queryDatabase function: " + result);
+    // picarray.push(result[4]); // number 4 is the randomnumber
+    // console.log("picarray: " + picarray);
+    let receivedRandomNumber = result[4];
+    console.log("receivedRandomNumber: " + receivedRandomNumber);
+    usedNumbers.push(receivedRandomNumber);
+    req.session.usedNumbers = usedNumbers;
+    console.log("usedNumbers: " + req.session.usedNumbers);
+
     res.json({
       message: result[0],
       message2airportName: result[1],
       message3latitude_ns: result[2],
       message4longitude_ew: result[3],
+      message5randomnumber: result[4],
     });
   });
+
+  // console.log("receivedRandomNumber: " + receivedRandomNumber);
 });
 
 app.get("*", (req, res) => {
