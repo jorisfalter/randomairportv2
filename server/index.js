@@ -111,24 +111,33 @@ async function queryDatabase(databaseId) {
 app.get("/api", function (req, res) {
   let usedNumbers = req.session.usedNumbers || [];
 
-  queryDatabase(databaseId).then((result) => {
-    console.log("what we receive after queryDatabase function: " + result);
-    // picarray.push(result[4]); // number 4 is the randomnumber
-    // console.log("picarray: " + picarray);
-    let receivedRandomNumber = result[4];
-    console.log("receivedRandomNumber: " + receivedRandomNumber);
-    usedNumbers.push(receivedRandomNumber);
-    req.session.usedNumbers = usedNumbers;
-    console.log("usedNumbers: " + req.session.usedNumbers);
+  function queryDatabaseWrapper() {
+    queryDatabase(databaseId).then((result) => {
+      console.log("what we receive after queryDatabase function: " + result);
+      // picarray.push(result[4]); // number 4 is the randomnumber
+      // console.log("picarray: " + picarray);
+      let receivedRandomNumber = result[4];
+      console.log("receivedRandomNumber: " + receivedRandomNumber);
+      if (usedNumbers.includes(receivedRandomNumber)) {
+        console.log("duplicate");
+        queryDatabaseWrapper();
+      } else {
+        console.log("not a duplicate");
+        usedNumbers.push(receivedRandomNumber);
+        req.session.usedNumbers = usedNumbers;
+        console.log("usedNumbers: " + req.session.usedNumbers);
 
-    res.json({
-      message: result[0],
-      message2airportName: result[1],
-      message3latitude_ns: result[2],
-      message4longitude_ew: result[3],
-      message5randomnumber: result[4],
+        res.json({
+          message: result[0],
+          message2airportName: result[1],
+          message3latitude_ns: result[2],
+          message4longitude_ew: result[3],
+          message5randomnumber: result[4],
+        });
+      }
     });
-  });
+  }
+  queryDatabaseWrapper();
 
   // console.log("receivedRandomNumber: " + receivedRandomNumber);
 });
