@@ -38,10 +38,8 @@ async function queryDatabase(databaseId) {
     // Notion counts from the bottom!
 
     let randomNumber = Math.floor(Math.random() * dbLength);
-    // this doesn't seem to work in it's current form > combines all users' pics
-    // randomNumberArray.push(randomNumber);
+
     console.log("this is the random number " + randomNumber);
-    // console.log(randomNumberArray);
 
     // this function fetches a new number after a faulty row has been discovered
     // for unclear reasons I cannot call it straight away when the app launches, so the lines above are duplicates necessary for first run

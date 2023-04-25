@@ -17,12 +17,18 @@ function App() {
       .then((fetchedData) => setNewAirportPicLinkAndName(fetchedData));
   }
 
+  function handleKeyDown(event) {
+    if (event.code === "Space" || event.code === "ArrowRight") {
+      fetchApi();
+    }
+  }
+
   React.useEffect(() => {
     fetchApi();
   }, []);
 
   return (
-    <div className="app-toplevel">
+    <div className="app-toplevel" tabIndex={0} onKeyDown={handleKeyDown}>
       <header className="app-header">
         {/* <div className="test">abc</div> */}
         <div ClassName="app-lowerlevel">
