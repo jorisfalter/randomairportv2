@@ -3,8 +3,6 @@ const fetch = require("cross-fetch");
 
 require("dotenv").config();
 
-/// THERE IS SOME ISSUE WITH FETCH > It doens't work with require, or with import, ...
-
 // async function getCoords() {
 const mapsKey = process.env.MAPS_GEOCODER_API_KEY;
 // const address = props.airportName.substring(0, 4) + " airport";
