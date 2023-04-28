@@ -2,6 +2,8 @@ import React from "react";
 import NewMapComponent from "./MapsComponentNotComposeFunction.jsx";
 
 function PicComponent(props) {
+  const screenWidth = window.innerWidth;
+
   function WhenClicked(event) {
     props.onButtonClick();
     event.preventDefault();
