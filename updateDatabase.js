@@ -12,12 +12,10 @@ const fetch = require("cross-fetch");
 require("dotenv").config();
 
 const mapsKey = process.env.MAPS_GEOCODER_API_KEY;
-const address = "eham airport";
-const URL =
-  "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-  address +
-  "&key=" +
-  mapsKey;
+let address = "";
+let URL = "";
+let xcor = "";
+let ycor = "";
 
 async function queryDatabase(databaseId) {
   let results = [];
@@ -38,40 +36,64 @@ async function queryDatabase(databaseId) {
 
     results = [...results, ...response.results];
   }
+  console.log(results.length);
 
   // Loop through each row and update the properties if the checkbox is false
   for (const row of response.results) {
     if (!row.properties.ReadyForUse.checkbox) {
+      address =
+        row.properties.Name.title[0].plain_text.substring(0, 4) + " airport";
+
+      //   let latns = row.properties.Latitude_NS.number;
+      //   console.log("lat_ns: " + latns);
+      URL =
+        "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+        address +
+        "&key=" +
+        mapsKey;
+
       try {
         // call the geocoder
         async function callGeocoder() {
           const response = await fetch(URL);
           const json = await response.json();
-          console.log(
-            "xcor: " +
-              json.results[0].geometry.location.lat +
-              "ycor: " +
-              json.results[0].geometry.location.lng
-          );
+          let xcor_notRounded = json.results[0].geometry.location.lat;
+          let ycor_notRounded = json.results[0].geometry.location.lng;
+          xcor = parseFloat(xcor_notRounded.toFixed(4));
+          ycor = parseFloat(ycor_notRounded.toFixed(4));
+          //   console.log(
+          // "xcor: " +
+          //   json.results[0].geometry.location.lat +
+          //   " ycor: " +
+          //   json.results[0].geometry.location.lng
+          //   );
         }
         await callGeocoder();
 
-        // Update the checkbox property to true and add "changed" to the text_test column
+        // Change the content
+        // I do the final check manually, I want to manually set to "OK"
         await notion.pages.update({
           page_id: row.id,
           properties: {
-            ReadyForUse: {
-              checkbox: true,
-            },
-            Text_test: {
-              rich_text: [
-                {
-                  text: {
-                    content: "changed",
-                  },
-                },
-              ],
-            },
+            //// changing the checkbox
+            // ReadyForUse: {
+            //   checkbox: true,
+            // },
+
+            //// changing the test field > only works in test
+            // Text_test: {
+            //   rich_text: [
+            //     {
+            //       text: {
+            //         content: "xcor: " + xcor + ", ycor: " + ycor,
+            //       },
+            //     },
+            //   ],
+            // },
+
+            //// change the latitutde and longitude colums
+            Latitude_NS: { number: xcor },
+            Longitude_EW: { number: ycor },
           },
         });
       } catch (error) {

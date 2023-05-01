@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const mapsKey = process.env.REACT_APP_MAPS_API_KEY;
+// const mapsKey = process.env.REACT_APP_MAPS_API_KEY_TEST; // to see the map when testing locally
 
 function NewMapComponent(props) {
   // const [airportCoords, setAirportCoords] = React.useState({

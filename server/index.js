@@ -8,6 +8,7 @@ const path = require("path");
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DB_ID;
+// const databaseId = process.env.NOTION_DB_ID_TEST; // this is for the notion test database
 
 const app = express();
 
