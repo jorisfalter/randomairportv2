@@ -10,7 +10,31 @@ button {
   font-size: 80px;
 }
 
+.close-map-bar{
+  position: absolute;
+  right:-3px;
+  width: 300px;
+  z-index:1;
+  background-color: lightgreen;
+  border-color:black;
+  border-style: solid;
+  cursor: pointer; 
+}
 
+.close-map-bar2{
+  position: absolute;
+  width: 800px;
+  z-index:1;
+  background-color: lightgreen;
+  border-color:black;
+  border-style: solid;
+  cursor: pointer; 
+  display:none;
+}
+
+.close-map-bar-text{
+  padding-left: 10px;
+}
 
 .button-and-image {
   position: relative;
@@ -49,11 +73,19 @@ a { color: white; }
   .mapComponent {
     display:none;
   }
+
+  .close-map-bar{
+    display:none;
+  }
   
   .mapComponent2 {
     /* position: sticky;  */
     display: block;
   }
+  .close-map-bar2{
+    display:block;
+  }
+
 
   .feedback-form1{
   position:absolute;
