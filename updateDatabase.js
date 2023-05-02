@@ -96,6 +96,9 @@ async function queryDatabase(databaseId) {
             //// change the latitutde and longitude colums
             Latitude_NS: { number: xcor },
             Longitude_EW: { number: ycor },
+
+            //// change the sequence number
+            // todo
           },
         });
       } catch (error) {
