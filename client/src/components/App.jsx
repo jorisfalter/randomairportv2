@@ -28,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-toplevel" tabIndex={0} onKeyDown={handleKeyDown}>
+    <div className="app-toplevel" tabIndex="0" onKeyDown={handleKeyDown}>
       <header className="app-header">
         {/* <div className="test">abc</div> */}
         <div ClassName="app-lowerlevel">
