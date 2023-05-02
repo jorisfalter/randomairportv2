@@ -57,7 +57,6 @@ function PicComponent(props) {
           {mapIsVisible && <div className="close-map-bar-text">Hide Map</div>}
           {!mapIsVisible && <div className="close-map-bar-text">Show Map</div>}
         </div>
-
         <div className="mapComponent2">
           {mapIsVisible && (
             <NewMapComponent

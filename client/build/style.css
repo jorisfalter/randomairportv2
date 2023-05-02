@@ -24,12 +24,15 @@ button {
 .close-map-bar2{
   position: absolute;
   width: 800px;
+  padding-top: 6px;
+  padding-bottom:6px;
   z-index:1;
   background-color: lightgreen;
   border-color:black;
   border-style: solid;
   cursor: pointer; 
   display:none;
+  bottom: -800px;
 }
 
 .close-map-bar-text{
