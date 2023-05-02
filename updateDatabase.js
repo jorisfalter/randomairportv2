@@ -27,19 +27,21 @@ async function queryDatabase(databaseId) {
 
   results = response.results;
 
-  // Keep looping through the results as long as there are more pages
-  while (response.has_more) {
-    response = await notion.databases.query({
-      database_id: databaseId,
-      start_cursor: response.next_cursor,
-    });
+  //// we loopen niet meer omdat dit problemen veroorzaakt, en alle nieuwe airports aan het eind van de db zitten
+  //// Keep looping through the results as long as there are more pages
+  //   while (response.has_more) {
+  //     response = await notion.databases.query({
+  //       database_id: databaseId,
+  //       start_cursor: response.next_cursor,
+  //     });
 
-    results = [...results, ...response.results];
-  }
-  console.log(results.length);
+  //     results = [...results, ...response.results];
+  //   }
+  console.log("db length: " + results.length);
 
   // Loop through each row and update the properties if the checkbox is false
   for (const row of response.results) {
+    // console.log(row.properties.Name.title[0].plain_text.substring(0, 4));
     if (!row.properties.ReadyForUse.checkbox) {
       address =
         row.properties.Name.title[0].plain_text.substring(0, 4) + " airport";
@@ -106,11 +108,11 @@ async function queryDatabase(databaseId) {
   return results;
 }
 
-// Call the function and log each row
+//// Call the function and log each row
 //// Production
-// queryDatabase(databaseIdProd).then((rows) => {
-//// Test
-queryDatabase(databaseIdTest).then((rows) => {
+queryDatabase(databaseIdProd).then((rows) => {
+  //// Test
+  // queryDatabase(databaseIdTest).then((rows) => {
   // rows.forEach((row) => {
   //   // console.log(row.properties.Sequence.number);
   //   // console.log(row.properties.Text.rich_text);
