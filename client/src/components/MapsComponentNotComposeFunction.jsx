@@ -56,9 +56,17 @@ function NewMapComponent(props) {
     borderStyle: "solid",
   };
 
+  const style2 = {
+    width: props.size,
+    height: props.size,
+  };
+
   return (
     <div className="wrapper-div">
-      <div className="map-div">
+      <div
+        className="map-div"
+        // style={style2}
+      >
         <Map
           className="map-div-inner"
           google={props.google}

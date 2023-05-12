@@ -4,7 +4,6 @@ body {
 }
 
 
-
 button {
   position: absolute;
   font-size: 80px;
@@ -20,6 +19,11 @@ button {
   border-style: solid;
   cursor: pointer; 
 }
+
+.map-div-inner{
+  /* position:relative !important; */
+}
+
 
 .close-map-bar2{
   position: absolute;
