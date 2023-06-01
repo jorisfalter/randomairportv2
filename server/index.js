@@ -35,6 +35,7 @@ async function queryDatabase(databaseId) {
     // this part seems to work
 
     let dbLength = response.results.length;
+    // let dbLength = 6;
 
     // Notion counts from the bottom!
 

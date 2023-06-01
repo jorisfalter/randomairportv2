@@ -20,10 +20,18 @@ button {
   cursor: pointer; 
 }
 
-.map-div-inner{
-  /* position:relative !important; */
-}
+/* .map-div{
+  position: relative;
+  height: 400px; /* specify a fixed height for the container */
+} */
 
+/* .map-div-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+} */
 
 .close-map-bar2{
   position: absolute;

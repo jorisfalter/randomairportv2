@@ -59,6 +59,7 @@ async function queryDatabase(databaseId) {
         async function callGeocoder() {
           const response = await fetch(URL);
           const json = await response.json();
+          console.log(json);
           let xcor_notRounded = json.results[0].geometry.location.lat;
           let ycor_notRounded = json.results[0].geometry.location.lng;
           xcor = parseFloat(xcor_notRounded.toFixed(4));
