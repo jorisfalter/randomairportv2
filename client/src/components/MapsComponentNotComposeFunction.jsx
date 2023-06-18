@@ -1,5 +1,5 @@
+import { GoogleApiWrapper, Map, Marker } from "google-maps-react";
 import React, { useEffect } from "react";
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const mapsKey = process.env.REACT_APP_MAPS_API_KEY;
 // const mapsKey = process.env.REACT_APP_MAPS_API_KEY_TEST; // to see the map when testing locally
@@ -50,8 +50,9 @@ function NewMapComponent(props) {
   // });
 
   const style = {
-    width: props.size,
-    height: props.size,
+    // width: props.size,
+    // height: props.size,
+    borderTop: "0px",
     borderColor: "black",
     borderStyle: "solid",
   };

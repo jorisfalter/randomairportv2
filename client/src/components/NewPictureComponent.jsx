@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import NewMapComponent from "./MapsComponentNotComposeFunction.jsx";
 
 function PicComponent(props) {
@@ -23,26 +24,9 @@ function PicComponent(props) {
       </p> */}
 
       <div className="button-and-image">
-        <div className="mapComponent">
-          {mapIsVisible && (
-            <NewMapComponent
-              airportName={props.newPicComponentTransfer.message2airportName}
-              latitude_ns={props.newPicComponentTransfer.message3latitude_ns}
-              longitude_ew={props.newPicComponentTransfer.message4longitude_ew}
-              size="300px"
-            />
-          )}
-        </div>
-
         <button className="button" onClick={WhenClicked}>
           Next
         </button>
-
-        <div className="close-map-bar" onClick={hideMap}>
-          {mapIsVisible && <div className="close-map-bar-text">Hide Map</div>}
-          {!mapIsVisible && <div className="close-map-bar-text">Show Map</div>}
-        </div>
-
         <img
           className="airportPicture"
           // width="500px"
@@ -53,7 +37,28 @@ function PicComponent(props) {
               : props.newPicComponentTransfer.message
           }
         />
-        <div className="close-map-bar2" onClick={hideMap}>
+        <div className="custom-map-container">
+          <div className="close-map-bar" onClick={hideMap}>
+            {mapIsVisible && <div className="close-map-bar-text">Hide Map</div>}
+            {!mapIsVisible && (
+              <div className="close-map-bar-text">Show Map</div>
+            )}
+          </div>
+          <div className="mapComponent">
+            {mapIsVisible && (
+              <NewMapComponent
+                airportName={props.newPicComponentTransfer.message2airportName}
+                latitude_ns={props.newPicComponentTransfer.message3latitude_ns}
+                longitude_ew={
+                  props.newPicComponentTransfer.message4longitude_ew
+                }
+                size="300px"
+              />
+            )}
+          </div>
+        </div>
+
+        {/* <div className="close-map-bar2" onClick={hideMap}>
           {mapIsVisible && <div className="close-map-bar-text">Hide Map</div>}
           {!mapIsVisible && <div className="close-map-bar-text">Show Map</div>}
         </div>
@@ -66,7 +71,7 @@ function PicComponent(props) {
               size="800px"
             />
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
