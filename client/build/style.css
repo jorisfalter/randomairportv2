@@ -4,22 +4,34 @@ body {
 }
 
 
-
 button {
   position: absolute;
   font-size: 80px;
 }
 
 .close-map-bar{
-  position: absolute;
+  /* position: absolute;
   right:-3px;
-  width: 300px;
+  width: 300px; */
   z-index:1;
   background-color: lightgreen;
   border-color:black;
   border-style: solid;
   cursor: pointer; 
 }
+
+/* .map-div{
+  position: relative;
+  height: 400px; /* specify a fixed height for the container 
+} 
+
+/* .map-div-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+} */
 
 .close-map-bar2{
   position: absolute;
@@ -34,7 +46,9 @@ button {
   display:none;
   bottom: -800px;
 }
-
+.button-and-image .button{
+  z-index: 1;
+}
 .close-map-bar-text{
   padding-left: 10px;
 }
@@ -43,13 +57,29 @@ button {
   position: relative;
 }
 
+@media only screen and (max-width: 530px) {
+  .airportPicture{
+    height: 50vh !important;
+  }
+  .custom-map-container{
+    position: static !important;
+  }
+}
 .airportPicture{
-  max-width:2000px;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+.custom-map-container{
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    right: 0px;
 }
 
 .mapComponent {
-  position: absolute;
-  right: 300px;
+  /* position: absolute;
+  right: 300px; */
   /* display:none; */
 }
 .mapComponent2 {
@@ -58,7 +88,8 @@ button {
 }
 
 .feedback-form1{
-  position:sticky;
+  position:absolute;
+  height: 14px;
   bottom:0;
   left:0;
   background-color:green;
@@ -73,26 +104,6 @@ a { color: white; }
 
 @media only screen and (max-width: 1000px) {
  
-  .mapComponent {
-    display:none;
-  }
-
-  .close-map-bar{
-    display:none;
-  }
-  
-  .mapComponent2 {
-    /* position: sticky;  */
-    display: block;
-  }
-  .close-map-bar2{
-    display:block;
-  }
-
-
-  .feedback-form1{
-  position:absolute;
-  }
 
 
   .test{
