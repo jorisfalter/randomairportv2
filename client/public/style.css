@@ -56,31 +56,24 @@ button {
 .button-and-image {
   position: relative;
 }
-
-@media only screen and (max-width: 530px) {
-  .airportPicture{
-    height: 50vh !important;
-  }
-  .custom-map-container{
-    position: static !important;
-  }
-}
 .airportPicture{
   width: 100%;
   height: 100vh;
   position: absolute;
+  object-fit: cover;
 }
 .custom-map-container{
     width: 300px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     right: 0px;
 }
 
 .mapComponent {
-  /* position: absolute;
-  right: 300px; */
-  /* display:none; */
+  height: 100%;
+  position: relative;
 }
 .mapComponent2 {
   position: absolute;
@@ -100,7 +93,17 @@ button {
 }
 
 a { color: white; }
-
+@media only screen and (max-width: 530px) {
+  .airportPicture{
+    height: 50vh !important;
+    object-fit: fill !important;
+  }
+  .custom-map-container{
+    width: 100% !important;
+    height: 50vh !important;
+    bottom: 20px !important;
+  }
+}
 
 @media only screen and (max-width: 1000px) {
  
