@@ -60,7 +60,6 @@ button {
   width: 100%;
   height: 100vh;
   position: absolute;
-  object-fit: cover;
 }
 .custom-map-container{
     width: 300px;
@@ -94,14 +93,19 @@ button {
 
 a { color: white; }
 @media only screen and (max-width: 530px) {
+  html, body, #root, #root>div, .app-header,.app-header>div,.app-header>div>div, .app-header>div>div>.button-and-image{
+    height: 100% !important;
+  }
   .airportPicture{
-    height: 50vh !important;
-    object-fit: fill !important;
+    height: 50% !important;
   }
   .custom-map-container{
     width: 100% !important;
-    height: 50vh !important;
+    height: 50% !important;
     bottom: 20px !important;
+  }
+  .button-and-image .button{
+    font-size:30px !important;
   }
 }
 
