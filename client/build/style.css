@@ -57,7 +57,7 @@ button {
   position: relative;
 }
 .airportPicture{
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   position: absolute;
 }
@@ -98,6 +98,8 @@ a { color: white; }
   }
   .airportPicture{
     height: 50% !important;
+    width: 100%;
+
   }
   .custom-map-container{
     width: 100% !important;
